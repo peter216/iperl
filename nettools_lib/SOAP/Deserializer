@@ -1,0 +1,37 @@
+#!/usr/bin/perl
+
+
+use lib("/opstools/toolsdev/lib");
+
+use Nettools::SOAP::Deserializer qw( parseSoapData );
+use SOAP::Lite;
+print `date`;
+print "Issuing SOAP call\n";
+$result = SOAP::Lite
+	  #->service('http://wrap-d.netops.aol.com:8000/wsdl/AssetWrap.wsdl')
+	  ->service('http://wrap-d.netops.aol.com:8000/wsdl/ProductWrap.wsdl')
+	  ->outputxml(1)
+	  #->getAssetInfoByBarcode("001025263");
+	  #->getAssetsByName("ops2");
+	  #->getAssetsByCriteria("devicetype=\"ROUTER\",adminstatus=\"PRODUCTION\",lifecyclestatus=\"INSTALLED\"");
+	  #->getAssetsByCriteria("nodename=\"www-r.netops.aol.com\"");
+	  ->getProductsByCriteria("devicetype=\"ROUTER\",devicetype=\"SWITCH\",devicetype=\"SERVER\"");
+print `date`;
+print length($result), " characters in result string\n";
+print "Using parsing routine\n";
+%result = parseSoapData( key => "", 
+ 		         xml => $result);
+print `date`;
+print "Sorting and printing out hash\n";
+foreach $element (sort keys %result){
+	$count++;
+	$totalstring .= "$result{$element}{manufacturer}"."$result{$element}{make}"."$result{$element}{model}"."$result{$element}{deviceType}"."$result{$element}{category}";
+	#print "$element   $result{$assetid}->{$element}\n";
+}
+print length($totalstring), " characters in totalstring\n";
+print `date`;
+print "$count elements returned\n";
+print "Test complete\n";
+
+
+
