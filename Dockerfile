@@ -23,7 +23,8 @@ RUN apt-get clean && \
     apt-get purge -y --auto-remove \
         -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $BUILD_DEPS
 
-COPY nettools_lib /notebooks/
+RUN git clone ssh://git@stash.ops.aol.com:2022/neot/neo-scripts.git /neo-scripts
+
 ENTRYPOINT ["/iperl/bin/iperl"]
 CMD ["notebook", "--allow-root"]
 
