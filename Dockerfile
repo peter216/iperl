@@ -14,7 +14,7 @@ RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-i
                 libzmq3-dev libmagic-dev cpanminus ssh
 
 RUN git clone https://github.com/EntropyOrg/p5-Devel-IPerl.git /iperl
-RUN cd /iperl/ && cpanm --installdeps . && cpanm SOAP::Lite JSON::XS REST::Client
+RUN cd /iperl/ && cpanm --installdeps . SOAP::Lite JSON::XS REST::Client
 RUN jupyter-kernelspec install /iperl
 RUN mkdir -p -m 700 /root/.jupyter/ && \
     echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py && \
