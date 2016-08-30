@@ -1,13 +1,14 @@
 # Orig source: https://gist.github.com/dbiesecke/c57874957bed9812c5f0
+# Based on work by Daniel Biesecke <dbiesecke@gmail.com>
 # Use offical jupyter image and added iperl
 #
-# Add AOL libraries and dependencies
+# Made it work in my environment
 #
 # docker build -t iperl .
 # docker run --name iperl -d -p 8000:8888 -v "$(pwd):/notebooks" iperl
+#
 FROM jupyter/notebook
 
-# MAINTAINER Daniel Biesecke <dbiesecke@gmail.com>
 MAINTAINER Peter Rubenstein <peter.rubenstein@teamaol.com>
 
 RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
