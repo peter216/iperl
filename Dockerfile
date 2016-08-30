@@ -4,9 +4,6 @@
 #
 # Made it work in my environment
 #
-# docker build -t iperl .
-# docker run --name iperl -d -p 8000:8888 -v "$(pwd):/notebooks" iperl
-#
 FROM jupyter/notebook
 
 MAINTAINER Peter Rubenstein <peter.rubenstein@teamaol.com>
@@ -29,7 +26,6 @@ RUN apt-get clean && \
 
 RUN mkdir /root/.ssh && chmod -R 600 /root/.ssh
 COPY .ssh /root/.ssh/
-RUN git clone ssh://git@stash.ops.aol.com:2022/neot/neo-scripts.git /neo-scripts
 
 ENTRYPOINT ["/iperl/bin/iperl"]
 CMD ["notebook", "--allow-root"]
