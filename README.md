@@ -1,5 +1,5 @@
 # iperl
-A Docker recipe to run perl in ipython
+A Docker recipe to run perl in jupyter
 
 ## Instructions
 
