@@ -24,9 +24,7 @@ RUN apt-get clean && \
     apt-get purge -y --auto-remove \
         -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $BUILD_DEPS
 
-RUN mkdir /root/.ssh && chmod -R 600 /root/.ssh
-COPY .ssh /root/.ssh/
-
+EXPOSE 8888
 ENTRYPOINT ["/iperl/bin/iperl"]
 CMD ["notebook", "--allow-root"]
 

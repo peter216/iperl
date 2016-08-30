@@ -3,7 +3,5 @@
 
 # DOCKERCMD='ksu -k -e /usr/bin/docker'
 DOCKERCMD='/usr/local/bin/docker'
-cp -R ~/.ssh . && \
 $DOCKERCMD build -t iperl . && \
-$DOCKERCMD run --name=iperl --rm -p 8888:8888 -v /Users/prubenstein1/notebooks:/notebooks iperl && \
-rm -rf ./.ssh
+$DOCKERCMD run -it --name=iperl --rm -p 8889:8888 -v /Users/prubenstein1/notebooks:/notebooks iperl
